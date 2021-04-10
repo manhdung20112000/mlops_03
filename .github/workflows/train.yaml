@@ -2,8 +2,8 @@ name: mlops-tutorial-03
 on: [push]
 jobs:
   run:
-    runs-on: [ubuntu-latest]
-    # runs-on: [self-hosted, cml, gpu]
+#     runs-on: [ubuntu-latest]
+    runs-on: [self-hosted, cml, gpu]
     container: docker://dvcorg/cml-py3:latest
     steps:
       - uses: actions/checkout@v2
