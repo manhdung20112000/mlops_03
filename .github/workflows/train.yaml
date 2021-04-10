@@ -3,6 +3,7 @@ on: [push]
 jobs:
   run:
     runs-on: [ubuntu-latest]
+    # runs-on: [self-hosted, cml, gpu]
     container: docker://dvcorg/cml-py3:latest
     steps:
       - uses: actions/checkout@v2
@@ -21,4 +22,11 @@ jobs:
           # Add figures
           echo "## Validating results by region" >> report.md
           cml-publish by_region.png --md >> report.md
+          
+          # Check gpus
+          CODE_BLOCK = "\'\'\'"
+          echo $CODE_BLOCK >> report.md
+          nividia-smi >> report.md
+          echo $CODE_BLOCK >> report.md
+          
           cml-send-comment report.md
