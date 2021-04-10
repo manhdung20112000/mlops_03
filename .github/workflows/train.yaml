@@ -24,6 +24,6 @@ jobs:
           cml-publish by_region.png --md >> report.md
           
           # Check gpus
-          nividia-smi >> report.md
+          nvidia-smi >> report.md
           
           cml-send-comment report.md
