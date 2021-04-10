@@ -24,6 +24,9 @@ jobs:
           cml-publish by_region.png --md >> report.md
           
           # Check gpus
+          CODEBLOCK="\`\`\`"
+          echo $CODEBLOCK >> report.md
           nvidia-smi >> report.md
+          echo $CODEBLOCK >> report.md
           
           cml-send-comment report.md
