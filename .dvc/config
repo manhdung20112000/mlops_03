@@ -1,0 +1,4 @@
+[core]
+    remote = cifar-10
+['remote "cifar-10"']
+    url = gdrive://1jdzjtZp6bTF9kl6KWi_ZtW90m9HWejat

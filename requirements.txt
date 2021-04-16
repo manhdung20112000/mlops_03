@@ -3,3 +3,8 @@ sklearn
 pandas
 seaborn
 matplotlib
+torch
+torchvision
+tqdm
+wandb
+clearml
