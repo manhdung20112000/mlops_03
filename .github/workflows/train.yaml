@@ -2,9 +2,9 @@ name: mlops-tutorial-03
 on: [push]
 jobs:
   run:
-    runs-on: [ubuntu-latest]
-#     runs-on: [self-hosted, local, cml, gpu]
-    container: docker://dvcorg/cml-py3:latest
+#     runs-on: [ubuntu-latest]
+    runs-on: [self-hosted, local, cml, gpu]
+#     container: docker://dvcorg/cml-py3:latest
     steps:
       - uses: actions/checkout@v2
       - name: cml_run
@@ -21,9 +21,9 @@ jobs:
           dvc metrics diff --show-md deep-learning-demo >> report.md
           
           # Check gpus
-          # CODEBLOCK="\`\`\`"
-          # echo $CODEBLOCK >> report.md
-          # nvidia-smi >> report.md
-          # echo $CODEBLOCK >> report.md
+          CODEBLOCK="\`\`\`"
+          echo $CODEBLOCK >> report.md
+          nvidia-smi >> report.md
+          echo $CODEBLOCK >> report.md
           
           cml-send-comment report.md
