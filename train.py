@@ -2,15 +2,29 @@ import torch
 import torchvision
 import torch.optim as optim
 import torch.nn as nn
-import json
+import os
 from tqdm import tqdm
 
 from models.model import Net
 from models.datasets import attempt_dataload
 
-# get dataloaders
+import wandb
+
+# config
+epochs = 3
+learning_rate = 0.001
 batch_size = 4
 seed = 42
+
+# init wandb and set paramerter
+os.environ["WANDB_SILENT"] = "true"
+wandb.init(project= "project_tsa", 
+           config={"architecture": "ResNet",
+                   "epochs": epochs,
+                   "batch_size": batch_size,
+                   "learning_rate": learning_rate,})
+
+# get dataloaders
 trainloader, testloader = attempt_dataload(batch_size=batch_size, seed=42, download=False)
 
 # device 
@@ -25,9 +39,9 @@ net = Net().to(device)
 
 
 criterion = nn.CrossEntropyLoss()
-optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
+optimizer = optim.SGD(net.parameters(), lr=learning_rate, momentum=0.9)
 
-progress_bar = tqdm(range(3))
+progress_bar = tqdm(range(epochs))
 
 for epoch in progress_bar:
     running_loss = 0.0
