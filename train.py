@@ -27,7 +27,8 @@ imp = SimpleImputer(missing_values=np.nan, strategy='mean')
 imp.fit(X)
 X = imp.transform(X)
 
-
+# silly thing
+print("HELLO WORLD")
 # Linear model
 clf = LinearDiscriminantAnalysis()
 yhat = cross_val_predict(clf, X, y, cv=5)
