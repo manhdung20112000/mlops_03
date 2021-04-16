@@ -1,5 +1,6 @@
 import json
 import torch
+from torch._C import device
 
 from models.datasets import attempt_dataload
 from models.model import Net
@@ -7,10 +8,11 @@ from models.model import Net
 # load dataset
 trainloader, testloader = attempt_dataload(batch_size=4, seed=42, download=False)
 
-# model
+# model & device
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 PATH = 'models/net.pth'
 net = Net()
-net.load_state_dict(torch.load(PATH))
+net.load_state_dict(torch.load(PATH, map_location=device))
 
 # evaluate
 classes = ('plane', 'car', 'bird', 'cat',
