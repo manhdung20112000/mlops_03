@@ -1,6 +1,6 @@
 import pandas as pd 
 import numpy as np
-from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.linear_model import LogisticRegression
 from sklearn import preprocessing
 from sklearn.model_selection import cross_val_predict
@@ -27,9 +27,10 @@ imp = SimpleImputer(missing_values=np.nan, strategy='mean')
 imp.fit(X)
 X = imp.transform(X)
 
-
+# silly thing
+print("HELLO WORLD")
 # Linear model
-clf = QuadraticDiscriminantAnalysis()
+clf = LinearDiscriminantAnalysis()
 yhat = cross_val_predict(clf, X, y, cv=5)
 
 acc = np.mean(yhat==y)
