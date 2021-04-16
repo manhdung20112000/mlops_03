@@ -16,7 +16,7 @@ trainloader, testloader = attempt_dataload(batch_size=batch_size, seed=42, downl
 # device 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 try:
-    print(f"Training on {torch.cuda.get_device_name(device)}")
+    print(f"Training on {torch.cuda.get_device_name(device) if torch.cuda.is_available() else 'CPU'}")
 except:
     print(f"Training on CPU")
 
