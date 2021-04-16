@@ -24,6 +24,8 @@ wandb.init(project= "project_tsa",
                    "batch_size": batch_size,
                    "learning_rate": learning_rate,})
 
+wandb.login()
+
 # get dataloaders
 trainloader, testloader = attempt_dataload(batch_size=batch_size, seed=42, download=False)
 
